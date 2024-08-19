@@ -13,42 +13,55 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Add validation rules and messages
-    const fv = FormValidation.formValidation(form, {
+    fv = FormValidation.formValidation(form, {
         fields: {
-            countryName: {
+            firstName: {
                 validators: {
                     notEmpty: {
-                        message: "Please enter country name",
+                        message: "Please enter your first name",
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z0-9 ]+$/,
-                        message:
-                            "The name can only consist of alphabetical, number and space",
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: "The first name can only consist of alphabetical characters and spaces",
                     },
                 },
             },
-            countrySlug: {
+            lastName: {
                 validators: {
                     notEmpty: {
-                        message: "Please enter country slug",
+                        message: "Please enter your last name",
                     },
                     regexp: {
-                        regexp: /^\S*$/,
-                        message: "The country slug cannot contain spaces",
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: "The last name can only consist of alphabetical characters and spaces",
                     },
                 },
             },
-            countryPageTitle: {
+            postSelect: {
                 validators: {
                     notEmpty: {
-                        message: "Please enter page title",
+                        message: "Please select a role",
                     },
                 },
             },
-            countryMetaDescription: {
+            email: {
                 validators: {
                     notEmpty: {
-                        message: "Please enter meta description",
+                        message: "Please enter an email address",
+                    },
+                    emailAddress: {
+                        message: "Please enter a valid email address",
+                    },
+                },
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: "Please enter a password",
+                    },
+                    stringLength: {
+                        min: 8,
+                        message: "The password must be at least 8 characters long",
                     },
                 },
             },
@@ -58,15 +71,13 @@ document.addEventListener("DOMContentLoaded", function () {
             bootstrap5: new FormValidation.plugins.Bootstrap5({
                 rowSelector: function (field, ele) {
                     switch (field) {
-                        case "countryName":
+                        case "firstName":
+                        case "lastName":
+                        case "postSelect":
                             return ".col-md-4";
-                        case "countrySlug":
-                            return ".col-md-4";
-                        case "countryPageTitle":
-                            return ".col-md-4";
-                        case "countryMetaDescription":
-                            return ".col-md-12";
-                        // Add other cases if needed...
+                        case "email":
+                        case "password":
+                            return ".col-md-6";
                         default:
                             return ".row";
                     }
@@ -78,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
+
+
     // Initialize the validation
     form.querySelectorAll("input, select, textarea").forEach(function (input) {
         input.addEventListener("input", function () {
@@ -86,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document
-        .getElementById("btnCountrySave")
+        .getElementById("btnStaffSave")
         .addEventListener("click", function () {
             form.classList.add("was-validated");
         });

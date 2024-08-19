@@ -33,6 +33,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Page js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
 {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script> --}}
 <script src="{{url('admin_assets/vendor/libs/@form-validation/popular.js')}}"></script>
 <script src="{{url('admin_assets/vendor/libs/@form-validation/bootstrap5.js')}}"></script>
@@ -54,6 +57,15 @@
 <script src="{{url('admin_assets/js/alert.js')}}"></script>
 
 <script>
+      new DataTable('#table', {
+        paging: true,
+        scrollCollapse: true,
+        scrollY: '400px',
+      //   "columnDefs": [
+      //   {"className": "dt-left", "targets": "_all"}
+      // ],
+    
+    });
     var toastElList = [].slice.call(document.querySelectorAll('.toast'));
     var toastList = toastElList.map(function(toastEl) {
         return new bootstrap.Toast(toastEl);

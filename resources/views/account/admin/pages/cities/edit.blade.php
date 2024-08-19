@@ -82,7 +82,7 @@
     @section('scripts')
         <!-- Page JS -->
         {{-- <script src="{{url('admin_assets/js/form-validation-city-edit.js')}}"></script> --}}
-        <script src="{{ url('admin_assets/js/validation/imageUploaderValidation.js') }}"></script>
+        {{-- <script src="{{ url('admin_assets/js/validation/imageUploaderValidation.js') }}"></script> --}}
         <script>
             var url = 'lk';
             var slugArray = [];

@@ -38,11 +38,11 @@
 
                                 
                                 <div class="col-md-4 mb-3">
-                                    <label for="post" class="form-label">Role</label>
-                                    <select id="post" class="form-select" required>
-                                        {{-- @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}">{{ $region->regionDetails->first()->display_title}}</option>
-                                        @endforeach --}}
+                                    <label for="postSelect" class="form-label">Role</label>
+                                    <select id="postSelect" class="form-select" required>
+                                        @foreach ($posts as $post)
+                                            <option value="{{ $post->id }}">{{ $post->name}}</option>
+                                        @endforeach
                                     </select>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please select a region.</div>
@@ -53,28 +53,26 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label" for="email">Email</label>
+                                    <label class="form-label" for="email">Email (The users can reset their credintials)</label>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Staff@gmail.com" required />
+                                        value="Staff@gmail.com" required />
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter a page title.</div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                         required />
+                                    <input type="text" class="form-control" id="password" name="password"
+                                         value="staff@1234" required />
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter a page title.</div>
                                 </div>
                             </div>
 
-                            {{-- @include('account.admin.layouts.includes.component.ogImageUploader') --}}
-
                             <div class="row">
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary" name="submitButton"
-                                        id="btncitySave"> <span class="spinner-border spinner-border-sm d-none"
+                                        id="btnStaffSave"> <span class="spinner-border spinner-border-sm d-none"
                                             role="status" aria-hidden="true"></span>
                                         Submit</button>
                                     </button>
@@ -91,20 +89,17 @@
 
     @section('scripts')
         <!-- Page JS -->
-        {{-- <script src="{{url('admin_assets/js/form-validation-city-edit.js')}}"></script> --}}
-        <script src="{{ url('admin_assets/js/validation/imageUploaderValidation.js') }}"></script>
+        {{-- <script src="{{url('admin_assets/js/form-validation-staff-add.js')}}"></script> --}}
+        {{-- <script src="{{ url('admin_assets/js/validation/imageUploaderValidation.js') }}"></script> --}}
         <script>
-            var url = 'lk';
-            var slugArray = [];
-            slugArray['region'] = '';
-            slugArray['name'] = '';
+   
           
             (function() {
                 // Apply Bootstrap validation styles to
                 const bsValidationForms = $('.needs-validation');
                 bsValidationForms.each(function() {
                     $(this).on('submit', function(event) {
-                        isValidate = validateImageUploader();
+                        // isValidate = validateImageUploader();
                         if (!this.checkValidity()) {
                             event.preventDefault();
                             event.stopPropagation();
@@ -114,16 +109,15 @@
                             $(this).find('.spinner-border').removeClass('d-none');
                             $(this).prop('disabled', true);
                             disableFormFields($(this));
-                            $("#btncitySave").html('Submitting..');
-                            $("#btncitySave").prop('disabled', true);
+                            $("#btnStaffSave").html('Submitting..');
+                            $("#btnStaffSave").prop('disabled', true);
 
-                            var ogImagefile = ogNewFile;
                             var formData = new FormData();
-                            formData.append('name', $('#cityName').val());
-                            formData.append('slug', $('#citySlug').val());
-                            formData.append('ogImageFile', ogImagefile);
-                            formData.append('meta_description', $('#cityMetaDescription').val());
-                            formData.append('page_title', $('#cityPageTitle').val());
+                            formData.append('first_name', $('#firstName').val());
+                            formData.append('last_name', $('#lastName').val());
+                            formData.append('email', $('#email').val());
+                            formData.append('password', $('#password').val());
+                            formData.append('post_id', $('#postSelect').val());
                       
                             $.ajaxSetup({
                                 headers: {
@@ -138,12 +132,13 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(response) {
-                                    showSuccessAlert("city stored successfully", 'success',
+                                    showSuccessAlert("Staff stored successfully", 'success',
                                         '{{ route('staff.list-view') }}');
+
                                 },
                                 error: function(error) {
-                                    $("#btncitySave").html('Submitt');
-                                    $("#btncitySave").prop('disabled', false);
+                                    $("#btnStaffSave").html('Submitt');
+                                    $("#btnStaffSave").prop('disabled', false);
                                     showErrorAlert("Somthing went wrong", 'warning',
                                         '{{ route('staff.view') }}');
                                     enableFormFields($(this));

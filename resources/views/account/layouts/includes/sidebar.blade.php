@@ -22,7 +22,7 @@
     <ul class="menu-inner py-4">
  
         <li class="menu-item {{ request()->is('admin') ? 'active' : '' }}">
-            <a href="{{ route('dashboard') }}" class="menu-link">
+            <a href="{{ route('admin-dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-smart-home"></i>
                 <div data-i18n="Dashboard">Dashboard</div>
             </a>
@@ -48,12 +48,12 @@
             <ul class="menu-sub mt-1">
                 <li class="menu-item">
                     <a href="{{ route('staff.view') }}" class="menu-link">
-                        <div data-i18n="Add Country">Add staff</div>
+                        <div data-i18n="Add Staff">Add staff</div>
                     </a>
                 </li>
                 <li class="menu-item mt-1">
                      <a href="{{ route('staff.list-view') }}" class="menu-link">
-                        <div data-i18n="View Country">View staff</div>
+                        <div data-i18n="View Staff">View staff</div>
                     </a>
                 </li>
             </ul>

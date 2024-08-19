@@ -36,6 +36,8 @@
 <link rel="stylesheet" href="{{URL('admin_assets/vendor/css/rtl/theme-semi-dark.css')}}"
     class="template-customizer-theme-css" /> --}}
 
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css" />
+
 <link rel="stylesheet" href="{{url('admin_assets/vendor/css/rtl/theme-default.css')}}"
     class="template-customizer-theme-css" />
 <link rel="stylesheet" href="{{URL('admin_assets/css/demo.css')}}" />
