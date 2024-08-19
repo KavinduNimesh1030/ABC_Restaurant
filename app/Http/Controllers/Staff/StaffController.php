@@ -39,5 +39,36 @@ class StaffController extends Controller
         return view('account.admin.pages.staff.list',['staffs'=>$staffs]);
     }
 
+    public function getEditPage(string $id){
+        $staff =  $this->findById($id);
+        $posts = $this->postService->getAll();
+        return view('account.admin.pages.staff.edit',['staff'=>$staff,'posts'=>$posts]);
+    }
+
+    private function findById(string $id)
+    {
+       return $this->staffService->findById($id);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        try {
+            $this->staffService->update($request->all(), $id);
+        } catch (Exception $e) {
+            return redirect()->back()->with($e->getMessage());
+        }
+    }
+
+    public function delete(string $id)
+    {
+        try {
+            $this->staffService->delete($id);
+            return response()->json(['success' => 'Staff deleted successfully.']);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with($e->getMessage());
+        }
+    }
+
     
 }

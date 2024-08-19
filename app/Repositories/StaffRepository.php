@@ -18,12 +18,27 @@ class StaffRepository implements StaffRepositoryInterface
 
     public function store(array $data)
     {
+        User::create($data)->assignRole('staff');
+    }
+
+    public function findById(string $id)
+    {
+        return User::where('id',$id)->first();
+    }
+
+    public function update(array $data, $id)
+    {
+        User::where('id',$id)->update($data);
+    }
+
+    public function delete(string $id)
+    {
         try{
-            User::create($data)->assignRole('staff');
+            User::where('id',$id)->delete();
         }catch(Exception $e){
             dd($e->getMessage());
         }
-       
+      
     }
    
 }

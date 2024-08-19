@@ -52,7 +52,7 @@
                                     class="btn
                                     btn-outline-primary btn-sm mb-2">Edit</a>
 
-                                <a type="button" id="staffDeleteBtn" onclick="deletestaff('{{$staff->id}}')"
+                                <a type="button" id="staffDeleteBtn" onclick="deleteStaff('{{$staff->id}}')"
                                     class="btn btn-outline-danger btn-sm mb-2" style="color: #dc3545;">Delete</a>
                             </td>
                         </tr>
@@ -72,7 +72,7 @@
 <script>
   
 
-    function deletestaff(id) {
+    function deleteStaff(id) {
       $.confirm({
         title: 'Confirm Deletion',
         content: 'Are you sure you want to delete this staff?',
@@ -107,22 +107,18 @@
                     _token: token
                 },
                 success: function(response) {
-                    if (response.success) {
-                      showSuccessAlert(response.success,'success','{{ route('staff.list-view') }}');
-                    }
+                    showSuccessAlert("Staff Delete successfully", 'success',
+                    '{{ route('staff.list-view') }}');
                 },
-                error: function(xhr) {
-                    if (xhr.status === 400) {
-                      showErrorAlert(xhr.responseJSON.error,'warning','{{route('staff.list-view')}}');
-                    } else {
-                      showErrorAlert('An unexpected error occurred.','warning','{{route('staff.list-view')}}');
-                    }
+                error: function(error) {
+                    console.log(error);
+                    showErrorAlert('An unexpected error occurred.','warning','{{route('staff.list-view')}}');
                 }
             });
         }
 
  
-}
+
 
 </script>
 
