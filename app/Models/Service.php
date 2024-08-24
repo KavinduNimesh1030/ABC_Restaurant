@@ -28,6 +28,6 @@ class Service extends Model
 
     public function imageables()
     {
-        return $this->hasMany(Imageable::class, 'resourceable_id')->where('resourceable_type', Imageable::class);
+        return $this->hasMany(Imageable::class, 'resourceable_id')->where('resourceable_type', Service::class);
     }
 }

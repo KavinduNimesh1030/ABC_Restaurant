@@ -1,5 +1,5 @@
 <div class="col-md-12 mb-4">
-    <label class="form-label">OG image</label>
+    <label class="form-label">Feature Image</label>
     <div class="mb-0 d-flex">
         <img id="ogImage" src="{{url('admin_assets/img/icons/components/file-uploader.png')}}"
             alt="example placeholder" style="width:100%; pointer-events: none;" />
@@ -48,7 +48,7 @@
                     ogCropper.replace(e.target.result);
                 } else {
                     ogCropper = new Cropper(image[0], {
-                        aspectRatio: 5 / 5,
+                        aspectRatio: 16 / 9,
                         crop(event) {
                             var canvas = ogCropper.getCroppedCanvas();
                             canvas.toBlob(function(blob) {

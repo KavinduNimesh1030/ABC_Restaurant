@@ -24,7 +24,7 @@ class ImageableService
 
   public function find(string $resourcableId, string $model, string $position)
   {
-    return Imageable::where('resourcable_id',$resourcableId)->where('resourcable_type',$model)->where('position',$position)->first();
+    return Imageable::where('resourcable_id',$resourcableId)->where('resourceable_type',$model)->where('position',$position)->first();
   }
 
   

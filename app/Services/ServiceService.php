@@ -31,7 +31,10 @@ class ServiceService
 
   public function update(array $data, $id)
   {
-    return $this->serviceRepositoryInterface->update($data,$id);
+      $media = $this->mediaService->storeImages($data['image']);
+      unset($data['image']);
+      $this->imageableService->store($media['id'], $id, Service::class, 'Feature');
+      return $this->serviceRepositoryInterface->update($data,$id);
   }
 
   public function delete(string $id)

@@ -1,4 +1,9 @@
 @extends('account.layouts.default')
+@php
+   //$assign country to data for use in common image upload component
+//    dd($country->imageables);
+   $data = $service;
+@endphp
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row mb-4">
@@ -8,12 +13,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-10">
-                                <h5 class=" align-middle">Staff Edit</h5>
+                                <h5 class=" align-middle">Service Edit</h5>
                             </div>
                             <div class="col-md-2  d-md-flex justify-content-md-end">
-                                <button type="button" class="btn btn-outline-primary " disabled>
-                                    English
-                                </button>
+                         
                             </div>
                         </div>
                     </div>
@@ -21,54 +24,47 @@
                         <form class="formValidationExamples needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <label class="form-label" for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName"
-                                       value="{{$staff->first_name}}" required />
+                                    <label class="form-label" for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                       value="{{$service->name}}" required />
                                     <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a header.</div>
+                                    <div class="invalid-feedback">Please enter a name.</div>
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <label class="form-label" for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName"
-                                    value="{{$staff->last_name}}" required />
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a header.</div>
-                                </div>
-
-                                
-                                <div class="col-md-4 mb-3">
-                                    <label for="postSelect" class="form-label">Role</label>
-                                    <select id="postSelect" class="form-select" required>
-                                        <option value="{{ $staff->post->id }}">{{ $staff->post->name}}</option>
-                                        @foreach ($posts as $post)
-                                        @if($staff->post->id != $post->id)
-                                        <option value="{{ $post->id }}">{{ $post->name}}</option>
-                                        @endif 
-                                        @endforeach
+                                    <label for="type" class="form-label">Role</label>
+                                    <select id="type" class="form-select" required>
+                                        <option  value="{{$service->service_type}}">{{$service->service_type}}</option>
+                                        @if($service->name == 'Delivery')
+                                            <option value="Dining">Dining</option>
+                                        @else
+                                            <option value="Delivery">Delivery</option>
+                                        @endif
                                     </select>
                                     <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please select a region.</div>
+                                    <div class="invalid-feedback">Please select a type.</div>
                                 </div>
 
-                               
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label" for="name">Price</label>
+                                    <input type="number" class="form-control" id="price" name="price"
+                                       value="{{$service->price}}" required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter a name.</div>
+                                </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label" for="email">Email (The users can reset their credintials)</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        value="{{$staff->email}}" required />
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label" for="description">Description</label>
+                                    <textarea id="description" class="form-control" placeholder="Description" name="description"
+                                        required> {{$service->description}}</textarea>
                                     <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a page title.</div>
+                                    <div class="invalid-feedback">Please enter a description.</div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label" for="password">Password</label>
-                                    <input type="text" class="form-control" id="password" name="password"
-                                         value="{{$staff->password}}" required />
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a page title.</div>
+                                <div class="col-md-12 mb-3">
+                                    @include('account.layouts.includes.component.ogimageEditUploader')
                                 </div>
                             </div>
 
@@ -92,7 +88,7 @@
 
     @section('scripts')
         <!-- Page JS -->
-        {{-- <script src="{{url('admin_assets/js/form-validation-staff-add.js')}}"></script> --}}
+        {{-- <script src="{{url('admin_assets/js/form-validation-service-add.js')}}"></script> --}}
         {{-- <script src="{{ url('admin_assets/js/validation/imageUploaderValidation.js') }}"></script> --}}
         <script>
    
@@ -115,12 +111,13 @@
                             $("#btnStaffUpdate").html('Submitting..');
                             $("#btnStaffUpdate").prop('disabled', true);
 
+                            var ogImagefile = ogNewFile;
                             var formData = new FormData();
-                            formData.append('first_name', $('#firstName').val());
-                            formData.append('last_name', $('#lastName').val());
-                            formData.append('email', $('#email').val());
-                            formData.append('password', $('#password').val());
-                            formData.append('post_id', $('#postSelect').val());
+                            formData.append('name', $('#name').val());
+                            formData.append('service_type', $('#type').val());
+                            formData.append('description', $('#description').val());
+                            formData.append('price', $('#price').val());
+                            formData.append('image', ogImagefile);
                       
                             $.ajaxSetup({
                                 headers: {
@@ -130,20 +127,20 @@
 
                             $.ajax({
                                 type: 'POST',
-                                url: `{{ route('staff.edit', ['id' => ':id']) }}`.replace(':id', {{$staff->id}}),
+                                url: `{{ route('service.edit', ['id' => ':id']) }}`.replace(':id', {{$service->id}}),
                                 data: formData,
                                 contentType: false,
                                 processData: false,
                                 success: function(response) {
-                                    showSuccessAlert("Staff update successfully", 'success',
-                                        '{{ route('staff.list-view') }}');
+                                    showSuccessAlert("Service update successfully", 'success',
+                                        '{{ route('service.list-view') }}');
 
                                 },
                                 error: function(error) {
                                     $("#btnStaffUpdate").html('Submitt');
                                     $("#btnStaffUpdate").prop('disabled', false);
                                     showErrorAlert("Somthing went wrong", 'warning',
-                                        '{{ route('staff.view') }}');
+                                        '{{ route('service.view') }}');
                                     enableFormFields($(this));
                                 }
                             });
