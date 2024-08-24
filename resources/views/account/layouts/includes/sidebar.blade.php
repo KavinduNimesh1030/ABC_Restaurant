@@ -59,8 +59,7 @@
             </ul>
         </li>
       
-          {{-- <!-- City -->
-          <li class="menu-item mt-2 {{ request()->is('admin/city/*') ? 'active' : '' }} ">
+        <li class="menu-item mt-2 {{ request()->is('admin/service/*') ? 'active' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8f8a8a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world">
@@ -72,22 +71,21 @@
                         <path d="M12.5 3a17 17 0 0 1 0 18" />
                     </svg>
                 </i>
-                <div data-i18n="Manage City">Manage City</div>
+                <div data-i18n="Manage Service">Manage Service</div>
             </a>
             <ul class="menu-sub mt-1">
                 <li class="menu-item">
-                    <a href="{{ route('city.view') }}" class="menu-link">
-                        <div data-i18n="Add City">Add City</div>
+                    <a href="{{ route('service.view') }}" class="menu-link">
+                        <div data-i18n="Add Service">Add Service</div>
                     </a>
                 </li>
                 <li class="menu-item mt-1">
-                     <a href="{{ route('city.list-view') }}" class="menu-link">
-                        <div data-i18n="View City">View City</div>
+                     <a href="{{ route('service.list-view') }}" class="menu-link">
+                        <div data-i18n="View Service">View Service</div>
                     </a>
                 </li>
             </ul>
-        </li> --}}
-
+        </li>
 
     </ul>
 </aside>

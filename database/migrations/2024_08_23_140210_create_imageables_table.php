@@ -8,18 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-        */
+     */
     public function up(): void
     {
-        Schema::create('galleries', function (Blueprint $table) {
+        Schema::create('imageables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('restaurant_id');
-            $table->string('image_url');
-            $table->text('description')->nullable();
+            $table->unsignedBigInteger('media_id');
+            $table->string('resourceable_id');
+            $table->string('resourceable_type');
+            $table->string('position');
             $table->timestamps();
-
-            // Foreign Key Constraints
-            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+            $table->foreign('media_id')->references('id')->on('media');
         });
     }
 
@@ -28,7 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('galleries');
+        Schema::dropIfExists('imageables');
     }
-
 };

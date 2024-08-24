@@ -10,6 +10,7 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'service_type',
         'description',
         'price',
@@ -23,5 +24,10 @@ class Service extends Model
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
+    }
+
+    public function imageables()
+    {
+        return $this->hasMany(Imageable::class, 'resourceable_id')->where('resourceable_type', Imageable::class);
     }
 }

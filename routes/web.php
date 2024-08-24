@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\service\ServicesController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit-view/{id}', [StaffController::class, 'getEditPage'])->name('staff.edit-view');
             Route::post('/edit/{id}', [StaffController::class, 'edit'])->name('staff.edit');
             Route::delete('/delete/{id}', [StaffController::class, 'delete'])->name('staff.delete');
+        });
+
+        Route::group(['prefix' => '/service'], function () {
+            Route::get('/add-view', [ServicesController::class, 'index'])->name('service.view');
+            Route::post('/store', [ServicesController::class, 'store'])->name('service.store');
+            Route::get('/list-view', [ServicesController::class, 'getAll'])->name('service.list-view');
+            Route::get('/edit-view/{id}', [ServicesController::class, 'getEditPage'])->name('service.edit-view');
+            Route::post('/edit/{id}', [ServicesController::class, 'edit'])->name('service.edit');
+            Route::delete('/delete/{id}', [ServicesController::class, 'delete'])->name('service.delete');
         });
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
