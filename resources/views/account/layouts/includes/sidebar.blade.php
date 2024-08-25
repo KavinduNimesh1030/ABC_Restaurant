@@ -6,9 +6,6 @@
                 <div class="">
                     <img src="{{url('admin_assets/img/logos/usefulfy.png')}}" class="w-65 h-auto"  style="width: 150px !important;"/>
                 </div>
-
-          
-            {{-- <span class="app-brand-text demo menu-text fw-bold">Usefulfy</span> --}}
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
