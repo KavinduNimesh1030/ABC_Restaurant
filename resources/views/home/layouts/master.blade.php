@@ -40,6 +40,10 @@
     <main>
        @yield('content')
     </main>
+
+    @include('home.layouts.includes.cart')
+    @include('home.layouts.includes.panel-mobile')
+    
      <!-- Body Overlay -->
      <div id="body-overlay"></div>
 
