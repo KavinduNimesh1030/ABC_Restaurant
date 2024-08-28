@@ -43,9 +43,9 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="has-dropdown">
-                                <a href="#">Menu</a>
-                                <div class="dropdown-container">
+                            <li>
+                                <a href="{{route('home.menu')}}">Menu</a>
+                                {{-- <div class="dropdown-container">
                                     <ul>
                                         <li class="has-dropdown">
                                             <a href="#">List</a>
@@ -62,7 +62,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </li>
                             <li><a href="page-offers.html">Offers</a></li>
                             <li><a href="page-contact.html">Contact</a></li>

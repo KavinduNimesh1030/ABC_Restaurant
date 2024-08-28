@@ -1,19 +1,21 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\service\ServicesController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home.pages.home');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/menu', [HomeController::class, 'getMenu'])->name('home.menu');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => '/account/admin', 'middleware' => ['role:admin']], function () {
