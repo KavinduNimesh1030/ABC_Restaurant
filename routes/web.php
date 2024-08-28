@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\service\ServicesController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.pages.home');
 });
 
 Route::get('/dashboard', function () {
@@ -17,6 +18,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => '/account/admin', 'middleware' => ['role:admin']], function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
+        
         Route::group(['prefix' => '/staff'], function () {
             Route::get('/add-view', [StaffController::class, 'index'])->name('staff.view');
             Route::post('/store', [StaffController::class, 'store'])->name('staff.store');
@@ -33,6 +35,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit-view/{id}', [ServicesController::class, 'getEditPage'])->name('service.edit-view');
             Route::post('/edit/{id}', [ServicesController::class, 'edit'])->name('service.edit');
             Route::delete('/delete/{id}', [ServicesController::class, 'delete'])->name('service.delete');
+        });
+
+        Route::group(['prefix' => '/product'], function () {
+            Route::get('/add-view', [ProductController::class, 'index'])->name('product.view');
+            Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+            Route::get('/list-view', [ProductController::class, 'getAll'])->name('product.list-view');
+            Route::get('/edit-view/{id}', [ProductController::class, 'getEditPage'])->name('product.edit-view');
+            Route::post('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+            Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
         });
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
