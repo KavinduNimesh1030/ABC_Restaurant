@@ -38,7 +38,7 @@ class ProductService
   {
       $media = $this->mediaService->storeImages($data['image']);
       unset($data['image']);
-      $this->imageableService->store($media['id'], $id, Service::class, 'Feature');
+      $this->imageableService->store($media['id'], $id, Product::class, 'Feature');
       return $this->productRepositoryInterface->update($data,$id);
   }
 

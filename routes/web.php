@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Restaurant\RestaurantController;
 use App\Http\Controllers\service\ServicesController;
 use App\Http\Controllers\Staff\StaffController;
 use Illuminate\Support\Facades\Route;
@@ -13,9 +14,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu', [HomeController::class, 'getMenu'])->name('home.menu');
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::group(['prefix' => '/account/admin', 'middleware' => ['role:admin']], function () {
@@ -46,6 +47,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit-view/{id}', [ProductController::class, 'getEditPage'])->name('product.edit-view');
             Route::post('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
             Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+        });
+
+        
+        Route::group(['prefix' => '/restaurant'], function () {
+            Route::get('/add-view', [RestaurantController::class, 'index'])->name('restaurant.view');
+            Route::post('/store', [RestaurantController::class, 'store'])->name('restaurant.store');
+            Route::get('/list-view', [RestaurantController::class, 'getAll'])->name('restaurant.list-view');
+            Route::get('/edit-view/{id}', [RestaurantController::class, 'getEditPage'])->name('restaurant.edit-view');
+            Route::post('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
+            Route::delete('/delete/{id}', [RestaurantController::class, 'delete'])->name('restaurant.delete');
         });
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
