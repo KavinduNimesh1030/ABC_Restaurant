@@ -53,7 +53,7 @@
                                         <span class="text-muted text-sm">{{$product->description}}</span>
                                         <div class="row align-items-center mt-4">
                                             <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from</span> Rs.<span data-product-base-price>{{$product->price}}</span></span></div>
-                                            <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><button class="btn btn-outline-secondary btn-sm" data-action="open-cart-modal" data-id="1"><span>Add to cart</span></button></div>
+                                            <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><a  href="{{route('home.add-to-cart', ['id' => $product->id])}}" class="btn btn-outline-secondary btn-sm" data-action="open-cart-modal" data-id="1"><span>Add to cart</span></a></div>
                                         </div>
                                     </div>
                                     @endforeach

@@ -16,7 +16,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('home.pages.sign-in');
     }
 
     /**
@@ -30,6 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         $roles = Auth::user()->getRoleNames();
 
+       
 
         $route = '';
         if ($roles->contains('admin')) {
@@ -41,6 +42,7 @@ class AuthenticatedSessionController extends Controller
         } else {
             $route = '/';
         }
+
 
         return redirect()->intended($route);
     

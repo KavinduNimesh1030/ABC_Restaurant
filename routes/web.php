@@ -14,6 +14,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu', [HomeController::class, 'getMenu'])->name('home.menu');
 
 
+Route::get('/abc', function () {
+    return view('home.pages.sign-in');
+})->name('abc');
+
+Route::get('/ab', function () {
+    return view('home.pages.sign-up');
+})->name('ab');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -58,6 +67,11 @@ Route::middleware('auth')->group(function () {
             Route::post('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
             Route::delete('/delete/{id}', [RestaurantController::class, 'delete'])->name('restaurant.delete');
         });
+    });
+
+    Route::group(['prefix' => '/account/home', 'middleware' => ['role:customer']], function () {
+        Route::get('/add-to-cart', [HomeController::class, 'addToCart'])->name('home.add-to-cart');
+        Route::get('/cart', [HomeController::class, 'cart'])->name('home.cart');
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
