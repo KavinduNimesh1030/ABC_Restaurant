@@ -17,7 +17,7 @@ class Restaurant extends Model
 
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany(RestaurantService::class,'service_id');
     }
 
     public function reservations()
@@ -43,5 +43,10 @@ class Restaurant extends Model
     public function galleries()
     {
         return $this->hasMany(Gallery::class);
+    }
+
+    public function imageables()
+    {
+        return $this->hasMany(Imageable::class, 'resourceable_id')->where('resourceable_type', Restaurant::class);
     }
 }

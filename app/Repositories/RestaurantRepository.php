@@ -32,8 +32,8 @@ class RestaurantRepository implements RestaurantRepositoryInterface
 
     public function delete(string $id)
     {
+        RestaurantService::where('restaurant_id',$id)->delete();
         Restaurant::where('id',$id)->delete();
-      
     }
 
     public function storeRestaurantServices(array $data)

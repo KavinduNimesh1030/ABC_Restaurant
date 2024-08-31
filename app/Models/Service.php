@@ -23,7 +23,7 @@ class Service extends Model
 
     public function restaurant()
     {
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(RestaurantService::class,'restaurant_id');
     }
 
     public function imageables()

@@ -45,6 +45,8 @@
                                     <div class="invalid-feedback">Please select a type.</div>
                                 </div>
 
+                                
+
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label" for="name">Price</label>
                                     <input type="number" class="form-control" id="price" name="price"

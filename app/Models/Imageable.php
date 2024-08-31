@@ -27,6 +27,11 @@ class Imageable extends Model
         return $this->belongsTo(Product::class, 'resourceable_id')->where('resourceable_type', Product::class);
     }
 
+    public function restaurant()
+    {
+        return $this->belongsTo(Product::class, 'resourceable_id')->where('resourceable_type', Restaurant::class);
+    }
+
     public function media()
     {
         return $this->belongsTo(Media::class);

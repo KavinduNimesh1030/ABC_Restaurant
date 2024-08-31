@@ -42,7 +42,8 @@ class RestaurantController extends Controller
 
     public function getEditPage(string $id){
         $restaurant =  $this->findById($id);
-        return view('account.admin.pages.restaurant.edit',['restaurant'=>$restaurant,'categories'=>Category::all()]);
+        $services = $this->serviceService->getALl();
+        return view('account.admin.pages.restaurant.edit',['restaurant'=>$restaurant,'services'=>$services]);
     }
 
     private function findById(string $id)

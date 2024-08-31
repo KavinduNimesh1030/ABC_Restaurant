@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Restaurant;
+use App\Models\RestaurantService as ModelsRestaurantService;
 use App\Models\Service;
 use App\Repositories\interfaces\RestaurantRepositoryInterface;
 use Dotenv\Util\Str;
@@ -41,6 +42,16 @@ class RestaurantService
     }
   }
 
+  private function updateRestaurantServices(string $data, string $restaurant_id)
+  {
+   try{
+    ModelsRestaurantService::where('restaurant_id',$restaurant_id)->delete();
+   $this->storeRestaurantServices($data, $restaurant_id);
+   }catch(Exception $e){
+    dd($e->getMessage());
+   }
+  }
+
   public function findById(string $id)
   {
     return $this->restaurantRepositoryInterface->findById($id);
@@ -48,10 +59,17 @@ class RestaurantService
 
   public function update(array $data, $id)
   {
-      $media = $this->mediaService->storeImages($data['image']);
-      unset($data['image']);
-      $this->imageableService->store($media['id'], $id, Restaurant::class, 'Feature');
-      return $this->restaurantRepositoryInterface->update($data,$id);
+      try{
+        $services_ids = $data['services_ids'];
+        $media = $this->mediaService->storeImages($data['image']);
+        unset($data['services_ids']);
+        unset($data['image']);
+        $this->restaurantRepositoryInterface->update($data, $id);
+        $this->updateRestaurantServices($services_ids,$id);
+        $this->imageableService->store($media['id'], $id, Restaurant::class, 'Feature');
+      }catch(Exception $e){
+        dd($e->getMessage());
+      }
   }
 
   public function delete(string $id)
