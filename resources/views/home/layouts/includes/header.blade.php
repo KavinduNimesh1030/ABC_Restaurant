@@ -97,7 +97,7 @@
                             <i class="ti ti-shopping-cart"></i>
                             <span class="notification">0</span>
                         </span>
-                        <span class="cart-value">$<span class="value">0.00</span></span>
+                        <span class="cart-value">RS.<span class="value">0.00</span></span>
                     </a>
                 </div>
             </div>

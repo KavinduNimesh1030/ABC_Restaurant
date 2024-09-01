@@ -53,6 +53,7 @@
 </div>
     @yield('scripts')
     {{-- <script src="{{url('assets/scripts/script.js')}}"></script> --}}
+    
 
 </body>
 

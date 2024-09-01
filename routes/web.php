@@ -70,8 +70,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group(['prefix' => '/account/home', 'middleware' => ['role:customer']], function () {
-        Route::get('/add-to-cart', [HomeController::class, 'addToCart'])->name('home.add-to-cart');
+        Route::post('/add-to-cart/{id}', [HomeController::class, 'addToCart'])->name('home.add-to-cart');
         Route::get('/cart', [HomeController::class, 'cart'])->name('home.cart');
+        Route::post('/remove-from-cart/{id}', [HomeController::class, 'removeFromCart'])->name('home.remove-from-cart');
+
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

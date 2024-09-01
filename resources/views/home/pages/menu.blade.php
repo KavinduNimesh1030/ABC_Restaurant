@@ -53,7 +53,15 @@
                                         <span class="text-muted text-sm">{{$product->description}}</span>
                                         <div class="row align-items-center mt-4">
                                             <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from</span> Rs.<span data-product-base-price>{{$product->price}}</span></span></div>
-                                            <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><a  href="{{route('home.add-to-cart', ['id' => $product->id])}}" class="btn btn-outline-secondary btn-sm" data-action="open-cart-modal" data-id="1"><span>Add to cart</span></a></div>
+                                            {{-- <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><a  href="{{route('home.add-to-cart', ['id' => $product->id])}}" class="btn btn-outline-secondary btn-sm" data-action="open-cart-modal" data-id="1"><span>Add to cart</span></a></div> --}}
+                                            <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
+                                                <button 
+                                                class="btn btn-outline-secondary btn-sm" 
+                                                data-id="{{ $product->id }}" 
+                                                onclick="addtocart(event)">
+                                                <span>Add to cart</span>
+                                            </button>
+                                            </div>
                                         </div>
                                     </div>
                                     @endforeach
@@ -569,4 +577,35 @@
 
 </div>
 @endsection
+{{-- @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function addtocart(event) {
+        event.preventDefault(); // Prevent default button behavior
+        
+        var productId = $(event.currentTarget).data('id');
+        
+        $.ajax({
+            url: `{{ route('home.add-to-cart', ['id' => ':id']) }}`.replace(':id', productId),
+            type: 'POST',
+            data: {
+                id: productId,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                alert('Product added to cart!');
+                console.log('Product added to cart:', response);
+                updateCartUI(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error adding product to cart:', error);
+            }
+        });
+    }
+
+    function updateCartUI(response) {
+        // Implement your UI update logic here
+    }
+</script>
+@endsection --}}
 
