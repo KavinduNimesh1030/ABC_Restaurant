@@ -80,7 +80,7 @@
                     <span class="name"><a href="#product-modal" data-toggle="modal">${product.name}</a></span>
                     <span class="caption text-muted">${product.description}</span>
                 </td>
-                <td class="price">$${(product.price * item.quantity).toFixed(2)}</td>
+                <td class="price">Rs.${(product.price * item.quantity).toFixed(2)}</td>
                 <td class="actions">
                     <a href="#product-modal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                     <a href="#" class="action-icon remove-item" data-id="${product.id}"><i class="ti ti-close"></i></a>
@@ -123,6 +123,37 @@ $(document).on('click', '.remove-item', function(event) {
 });
 
 
+//checkout
+        $('#checkoutBtn').on('click', function(e) {
+            e.preventDefault(); 
+            var formData = new FormData();
+            formData.append('first_name', $('#firstName').val());
+            formData.append('last_name', $('#lastName').val());
+            formData.append('address', $('#address').val());
+            formData.append('phone_number', $('#phoneNumber').val());
+            formData.append('payment_type', $('input[name="payment_type"]:checked').val());
+
+
+            $.ajaxSetup({
+                 headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      }
+             });
+
+            $.ajax({
+                url: '{{ route('home.checkout') }}',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    alert('Order placed successfully!');
+                },
+                error: function(xhr) {
+                    alert('An error occurred: ' + xhr.responseText);
+                }
+            });
+        });
 
 </script>
 @endsection

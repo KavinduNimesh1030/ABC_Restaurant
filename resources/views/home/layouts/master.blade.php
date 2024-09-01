@@ -23,6 +23,7 @@
     
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="{{url('assets/dist/css/theme-beige.css')}}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
    
   
 </head>

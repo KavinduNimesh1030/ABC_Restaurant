@@ -51,5 +51,5 @@
             </div>
         </div>
     </div>
-    <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
+    <a href="{{route('home.checkout-page')}}" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
 </div>

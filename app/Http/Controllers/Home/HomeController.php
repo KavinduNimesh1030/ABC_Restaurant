@@ -88,9 +88,15 @@ class HomeController extends Controller
         return number_format($total, 2);
     }
     
-    
+    public function loadCheckoutPage()
+    {
+        $cart = $this->cart();
+        return view('home.pages.checkout',['cart'=>$cart]);
+    }
 
-    
-
-    
+      
+    public function checkout(Request $request)
+    {
+        dd($request->all());
+    }
 }

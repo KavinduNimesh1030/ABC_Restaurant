@@ -15,19 +15,10 @@
                     <!-- Navigation -->
                     <nav class="module module-navigation left mr-4">
                         <ul id="nav-main" class="nav nav-main">
-                            <li class="has-dropdown">
-                                <a href="#">Home</a>
-                                <div class="dropdown-container">
-                                    <ul>
-                                        <li><a href="index.html">Home Basic</a></li>
-                                        <li><a href="index-burgers.html">Home Burgers</a></li>
-                                        <li><a href="index-slider.html">Home Fullwidth Slider</a></li>
-                                        <li><a href="index-video.html">Home Video</a></li>
-                                        <li><a href="index-fresh.html">Home Fresh <span class="badge badge-success">New</span></a></li>
-                                        <li><a href="index-dark.html">Home Dark <span class="badge badge-success">New</span></a></li>
-                                    </ul>
-                                </div>
+                            <li>
+                                <a href="{{route('home')}}">Home</a>
                             </li>
+                            
                             <li class="has-dropdown">
                                 <a href="#">About</a>
                                 <div class="dropdown-container">
