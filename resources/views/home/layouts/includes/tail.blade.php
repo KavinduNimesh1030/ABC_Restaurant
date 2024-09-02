@@ -1,6 +1,12 @@
 @section('scripts')
 <script src="{{url('assets/dist/js/core.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Alert JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"
+    integrity="sha512-zP5W8791v1A6FToy+viyoyUUyjCzx+4K8XZCKzW28AnCoepPNIXecxh9mvGuy3Rt78OzEsU+VCvcObwAMvBAww=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{url('admin_assets/js/alert.js')}}"></script>
+
 <script>
 
     $(document).ready(function() {
@@ -147,7 +153,7 @@ $(document).on('click', '.remove-item', function(event) {
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    alert('Order placed successfully!');
+                    showSuccessAlert(response.success,'success','{{ route('home.menu') }}');
                 },
                 error: function(xhr) {
                     alert('An error occurred: ' + xhr.responseText);

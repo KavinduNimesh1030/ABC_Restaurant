@@ -101,8 +101,9 @@ class HomeController extends Controller
     {
       try{
         $this->orderService->store($request->all());
+        return response()->json(['success' => 'Order placed successfully.']);
       }catch(Exception $e){
-        dd($e->getMessage());
+        return redirect()->back($e->getMessage());
       }
     }
 }

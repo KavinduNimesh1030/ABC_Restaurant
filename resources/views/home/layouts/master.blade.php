@@ -14,6 +14,10 @@
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css"
+    integrity="sha512-0V10q+b1Iumz67sVDL8LPFZEEavo6H/nBSyghr7mm9JEQkOAm91HNoZQRvQdjennBb/oEuW+8oZHVpIKq+d25g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&amp;family=Raleway:wght@100;200;400;500&amp;display=swap" rel="stylesheet">
