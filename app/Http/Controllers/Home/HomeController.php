@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Services\OrderService;
 use App\Services\ProductService;
+use Exception;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __construct(private ProductService $productService)
+    public function __construct(private ProductService $productService, private OrderService $orderService)
     {
     }
 
@@ -97,6 +99,10 @@ class HomeController extends Controller
       
     public function checkout(Request $request)
     {
-        dd($request->all());
+      try{
+        $this->orderService->store($request->all());
+      }catch(Exception $e){
+        dd($e->getMessage());
+      }
     }
 }

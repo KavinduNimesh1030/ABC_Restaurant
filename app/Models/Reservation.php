@@ -36,6 +36,6 @@ class Reservation extends Model
 
     public function payment()
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasMany(Payment::class, 'resourceable_id')->where('resourceable_type', Reservation::class);
     }
 }
