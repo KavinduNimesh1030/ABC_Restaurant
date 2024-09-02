@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/remove-from-cart/{id}', [HomeController::class, 'removeFromCart'])->name('home.remove-from-cart');
         Route::get('/checkout-page', [HomeController::class, 'loadCheckoutPage'])->name('home.checkout-page');
         Route::post('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
+        Route::get('/reservation-views', [HomeController::class, 'loadReservationPage'])->name('home.reservation.view');
 
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

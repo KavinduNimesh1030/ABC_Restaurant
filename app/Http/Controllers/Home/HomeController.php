@@ -26,6 +26,11 @@ class HomeController extends Controller
         return view('home.pages.menu',['$products'=>$products,'categories'=>Category::all()]);
     }
 
+    public function loadReservationPage()
+    {
+        return view('home.pages.reservation');
+    }
+
     public function addToCart(Request $request)
     {
         $product = $this->productService->findById($request->id);

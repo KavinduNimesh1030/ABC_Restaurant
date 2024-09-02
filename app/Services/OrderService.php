@@ -31,6 +31,7 @@ class OrderService
       $this->orderRepositoryInterface->storeOrderDetails($data);
       $amount = $this->calculateCartTotal();
       $this->paymentRepositoryInterface->store(['resourceble_id'=>$order->id,'resourceble_type'=>Order::class,'user_id'=>Auth::user()->id,'amount'=>$amount,'payment_date'=>Date::now(),'payment_method'=>$paymentType]);
+      session()->forget('cart');
      }catch(Exception $e){
       dd($e->getMessage());
      }

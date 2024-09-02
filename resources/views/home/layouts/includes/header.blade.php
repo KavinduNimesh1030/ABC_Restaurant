@@ -55,6 +55,7 @@
                                     </ul>
                                 </div> --}}
                             </li>
+                            <li><a href="{{route('home.reservation.view')}}">Book A Table</a></li>
                             <li><a href="page-offers.html">Offers</a></li>
                             <li><a href="page-contact.html">Contact</a></li>
                             <li class="has-dropdown">

@@ -161,5 +161,25 @@ $(document).on('click', '.remove-item', function(event) {
             });
         });
 
+    //reservation
+        $('#booking-form').on('submit', function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("reservation.store") }}',
+                data: formData,
+                success: function(response) {
+                    alert('Reservation successful!');
+                    $('#booking-form')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    var err = JSON.parse(xhr.responseText);
+                    alert('Error: ' + err.message);
+                }
+            });
+        });
+
 </script>
 @endsection
