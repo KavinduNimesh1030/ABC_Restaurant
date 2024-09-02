@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu', [HomeController::class, 'getMenu'])->name('home.menu');
+Route::post('/reservation-store', [HomeController::class, 'storeReservation'])->name('home.reservation.store');
 
 
 Route::get('/abc', function () {

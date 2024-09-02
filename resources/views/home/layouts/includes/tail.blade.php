@@ -162,24 +162,67 @@ $(document).on('click', '.remove-item', function(event) {
         });
 
     //reservation
-        $('#booking-form').on('submit', function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
+        // $('#booking-form1').on('submit', function(e) {
+        //     e.preventDefault();
+        //     var formData = $(this).serialize();
 
-            $.ajax({
-                type: 'POST',
-                url: '{{ route("reservation.store") }}',
-                data: formData,
-                success: function(response) {
-                    alert('Reservation successful!');
-                    $('#booking-form')[0].reset();
-                },
-                error: function(xhr, status, error) {
-                    var err = JSON.parse(xhr.responseText);
-                    alert('Error: ' + err.message);
-                }
-            });
-        });
+            
+        //     $.ajaxSetup({
+        //          headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //               }
+        //      });
+
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '{{ route("home.reservation.store") }}',
+        //         data: formData,
+        //         contentType: false,
+        //         processData: false,
+        //         success: function(response) {
+        //             alert('Reservation successful!');
+        //             $('#booking-form1')[0].reset();
+        //         },
+        //         error: function(xhr, status, error) {
+        //             var err = JSON.parse(xhr.responseText);
+        //             alert('Error: ' + err.message);
+        //         }
+        //     });
+        // });
+
+    $('#reservationBtn').on('click', function(e) {
+    e.preventDefault();
+
+    var formData = new FormData();
+    formData.append('name', $('#firstName').val());
+    formData.append('email', $('#email').val());
+    formData.append('phone', $('#phone').val());
+    formData.append('date', $('#reservation_date').val());
+    formData.append('attendents', $('#attendents').val());
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: '{{ route("home.reservation.store") }}',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            $('#booking-form1')[0].reset();
+            showSuccessAlert(response.success,'success','{{ route('home') }}');
+        },
+        error: function(xhr, status, error) {
+            var err = JSON.parse(xhr.responseText);
+            alert('Error: ' + err.message);
+        }
+    });
+});
+
 
 </script>
 @endsection

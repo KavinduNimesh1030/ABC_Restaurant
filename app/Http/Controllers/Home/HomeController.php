@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Services\OrderService;
 use App\Services\ProductService;
+use App\Services\ReservationService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function __construct(private ProductService $productService, private OrderService $orderService)
+    public function __construct(private ProductService $productService, private OrderService $orderService, private ReservationService $reservationService)
     {
     }
 
@@ -29,6 +31,19 @@ class HomeController extends Controller
     public function loadReservationPage()
     {
         return view('home.pages.reservation');
+    }
+
+    public function storeReservation(Request $request)
+    {
+        try{
+            DB::beginTransaction();
+            $this->reservationService->store($request->all());
+            DB::commit();
+            return response()->json(['success' => 'Reserved successfully.']);
+          }catch(Exception $e){
+            DB::rollBack();
+            return redirect()->back($e->getMessage());
+          }
     }
 
     public function addToCart(Request $request)
@@ -105,9 +120,12 @@ class HomeController extends Controller
     public function checkout(Request $request)
     {
       try{
+        DB::beginTransaction();
         $this->orderService->store($request->all());
+        DB::commit();
         return response()->json(['success' => 'Order placed successfully.']);
       }catch(Exception $e){
+        DB::rollBack();
         return redirect()->back($e->getMessage());
       }
     }
