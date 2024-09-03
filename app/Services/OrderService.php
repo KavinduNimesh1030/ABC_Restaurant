@@ -49,6 +49,11 @@ class OrderService
     return $total;
   }
 
+  public function changeStatus(array $data, $id)
+  {
+      Order::where('id',$id)->update(['status'=>$data['status']]);
+  }
+
   // public function findById(string $id)
   // {
   //   return $this->orderRepositoryInterface->findById($id);

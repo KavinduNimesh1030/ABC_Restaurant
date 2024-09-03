@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Reservation\ReservationController;
@@ -72,12 +73,13 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::group(['prefix' => '/reservation'], function () {
-            Route::get('/add-view', [RestaurantController::class, 'index'])->name('restaurant.view');
-            Route::post('/store', [RestaurantController::class, 'store'])->name('restaurant.store');
             Route::get('/list-view', [ReservationController::class, 'getReservation'])->name('reservation.list-view');
             Route::post('/change-status/{id}', [ReservationController::class, 'changeStatus'])->name('reservation.change-status');
-            Route::post('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
-            Route::delete('/delete/{id}', [RestaurantController::class, 'delete'])->name('restaurant.delete');
+        });
+
+        Route::group(['prefix' => '/order'], function () {
+            Route::get('/list-view', [OrderController::class, 'getReservation'])->name('order.list-view');
+            Route::post('/change-status/{id}', [OrderController::class, 'changeStatus'])->name('order.change-status');
         });
     });
 
