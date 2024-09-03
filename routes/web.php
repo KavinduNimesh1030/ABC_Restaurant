@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Reservation\ReservationController;
 use App\Http\Controllers\Restaurant\RestaurantController;
 use App\Http\Controllers\service\ServicesController;
 use App\Http\Controllers\Staff\StaffController;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Route;
 
 
@@ -65,6 +67,15 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [RestaurantController::class, 'store'])->name('restaurant.store');
             Route::get('/list-view', [RestaurantController::class, 'getAll'])->name('restaurant.list-view');
             Route::get('/edit-view/{id}', [RestaurantController::class, 'getEditPage'])->name('restaurant.edit-view');
+            Route::post('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
+            Route::delete('/delete/{id}', [RestaurantController::class, 'delete'])->name('restaurant.delete');
+        });
+
+        Route::group(['prefix' => '/reservation'], function () {
+            Route::get('/add-view', [RestaurantController::class, 'index'])->name('restaurant.view');
+            Route::post('/store', [RestaurantController::class, 'store'])->name('restaurant.store');
+            Route::get('/list-view', [ReservationController::class, 'getReservation'])->name('reservation.list-view');
+            Route::post('/change-status/{id}', [ReservationController::class, 'changeStatus'])->name('reservation.change-status');
             Route::post('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
             Route::delete('/delete/{id}', [RestaurantController::class, 'delete'])->name('restaurant.delete');
         });

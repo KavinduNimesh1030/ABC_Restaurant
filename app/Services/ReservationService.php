@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Reservation;
 use App\Repositories\interfaces\ReservationRepositoryInterface;
 use App\Repositories\interfaces\PaymentRepositoryInterface;
 use Exception;
@@ -29,6 +30,11 @@ class ReservationService
      }catch(Exception $e){
       dd($e->getMessage());
      }
+  }
+
+  public function changeStatus(array $data, $id)
+  {
+      Reservation::where('id',$id)->update(['status'=>$data['status']]);
   }
 
 

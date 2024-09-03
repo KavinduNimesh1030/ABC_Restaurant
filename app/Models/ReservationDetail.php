@@ -20,6 +20,6 @@ class ReservationDetail extends Model
 
     public function reservation()
     {
-        return $this->belongsTo(Reservation::class);
+        return $this->belongsTo(Reservation::class,'reservation_id');
     }
 }
