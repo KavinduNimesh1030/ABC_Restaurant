@@ -43,7 +43,13 @@ Route::middleware('auth')->group(function () {
             Route::post('/edit/{id}', [StaffController::class, 'edit'])->name('staff.edit');
             Route::delete('/delete/{id}', [StaffController::class, 'delete'])->name('staff.delete');
         });
+    });
 
+    Route::group(['prefix' => '/account/staff', 'middleware' => ['role:staff']], function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('staff-dashboard');
+    });
+
+    Route::group(['middleware' => ['role:admin|staff']], function () {
         Route::group(['prefix' => '/service'], function () {
             Route::get('/add-view', [ServicesController::class, 'index'])->name('service.view');
             Route::post('/store', [ServicesController::class, 'store'])->name('service.store');

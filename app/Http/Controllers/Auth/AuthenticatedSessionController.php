@@ -36,9 +36,9 @@ class AuthenticatedSessionController extends Controller
         if ($roles->contains('admin')) {
             $route = '/account/admin/dashboard';
         } elseif ($roles->contains('customer')) {
-            $route = '/account/customer/dashboard';
+            $route = '/';
         } elseif ($roles->contains('staff')) {
-            $route = '/account/owner/dashboard';
+            $route = '/account/staff/dashboard';
         } else {
             $route = '/';
         }

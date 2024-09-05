@@ -26,6 +26,7 @@
         </li>
 
         
+        @if(auth()->user()->hasRole('Admin'))
         <li class="menu-item mt-2 {{ request()->is('admin/staff/*') ? 'active' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon ">
@@ -52,7 +53,9 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>      
+        @endif
+     
 
         <li class="menu-item mt-2 {{ request()->is('admin/restaurant/*') ? 'active' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">

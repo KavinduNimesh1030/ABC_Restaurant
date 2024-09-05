@@ -4,7 +4,7 @@
         <div>
           © <script>
           document.write(new Date().getFullYear())
-          </script>, developed by <a href="https://webmotech.com" target="_blank" class="footer-link text-primary fw-medium">Webmotech</a>
+          </script>, developed by <a href="" target="_blank" class="footer-link text-primary fw-medium">Kavindu Nimesh</a>
         </div>
       </div>
     </div>

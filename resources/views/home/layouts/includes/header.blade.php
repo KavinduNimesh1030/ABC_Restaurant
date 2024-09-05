@@ -58,7 +58,7 @@
                             <li><a href="{{route('home.reservation.view')}}">Book A Table</a></li>
                             <li><a href="page-offers.html">Offers</a></li>
                             <li><a href="page-contact.html">Contact</a></li>
-                            <li class="has-dropdown">
+                            {{-- <li class="has-dropdown">
                                 <a href="#">More</a>
                                 <div class="dropdown-container">
                                     <ul class="dropdown-mega">
@@ -76,12 +76,20 @@
                                         <img src="assets/soup/img/photos/dropdown-more.jpg" alt="">
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                         </ul>
                     </nav>
-                    <div class="module left">
-                        <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
-                    </div>
+                    @auth
+                        <div class="module left">
+                            <a href="{{route('home.menu')}}" class="btn btn-outline-secondary"><span>Order</span></a>
+                        </div>
+                    @else
+                        <div class="module left">
+                            <a href="{{ route('login') }}" class="btn btn-primary"><span>Sign In</span></a>
+                        </div>
+                    @endauth
+
+                   
                 </div>
                 <div class="col-md-2">
                     <a href="#" class="module module-cart right" data-toggle="panel-cart">

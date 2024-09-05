@@ -8,19 +8,19 @@
                 <a href="index.html"><img src="assets/img/logo-light.svg" alt="" width="88" class="mt-5 mb-5"></a>
             </div>
             <div class="col-lg-4 col-md-6">
-                <h5 class="text-muted">Latest news</h5>
+                <h5 class="text-muted">ABC US</h5>
                 <ul class="list-posts">
                     <li>
-                        <a href="blog-post.html" class="title">How to create effective webdeisign?</a>
-                        <span class="date">February 14, 2015</span>
+                        <a href="blog-post.html" class="title">About Us</a>
+                        <span class="date">Over View Of Our Restaurant </span>
                     </li>
                     <li>
-                        <a href="blog-post.html" class="title">Awesome weekend in Polish mountains!</a>
-                        <span class="date">February 14, 2015</span>
+                        <a href="blog-post.html" class="title">Reviews</a>
+                        <span class="date">What's Customers thought</span>
                     </li>
                     <li>
-                        <a href="blog-post.html" class="title">How to create effective webdeisign?</a>
-                        <span class="date">February 14, 2015</span>
+                        <a href="blog-post.html" class="title">Terms & Conditions</a>
+                        <span class="date">February 14, 2014</span>
                     </li>
                 </ul>
             </div>
@@ -51,7 +51,7 @@
         </div>
         <!-- Footer 2nd Row -->
         <div class="footer-second-row">
-            <span class="text-muted">Copyright Soup 2020©. Made with love by Suelo.</span>
+            <span class="text-muted">Copyright 2024©.Kavindu Nimesh.</span>
         </div>
     </div>
 

@@ -38,8 +38,12 @@ id="layout-navbar">
                 </div>
               </div>
               <div class="flex-grow-1">
-                <span class="fw-medium d-block">Usefulfy</span>
+                <span class="fw-medium d-block">ABC Restaurant</span>
+                @if(auth()->user()->hasRole('Admin'))
                 <small class="text-muted">Admin</small>
+                @else
+                <small class="text-muted">Staff</small>
+                @endif
               </div>
             </div>
           </a>
