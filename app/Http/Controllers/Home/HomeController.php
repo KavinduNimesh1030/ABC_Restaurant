@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Restaurant;
 use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Services\ReservationService;
@@ -19,7 +20,7 @@ class HomeController extends Controller
 
     public function index()
     { 
-        return view('home.pages.home',['categories'=>Category::all()]);
+        return view('home.pages.home',['categories'=>Category::all(),'restaurants'=>Restaurant::all()]);
     }
 
     public function getMenu()

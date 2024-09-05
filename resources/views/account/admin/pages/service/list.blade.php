@@ -27,8 +27,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>type</th>
-                            <th>price</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -42,10 +41,7 @@
                                 {{$service->name}}
                             </td>
                             <td>
-                                {{$service->service_type}}
-                            </td>
-                            <td>
-                                {{$service->price}}
+                                {{$service->description}}
                             </td>
                             <td>
                                 <a type="button" href={{ route('service.edit-view', ['id' => $service->id]) }}

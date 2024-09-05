@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <form class="formValidationExamples needs-validation" novalidate>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label class="form-label" for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                        value="{{$service->name}}" required />
@@ -31,27 +31,8 @@
                                     <div class="invalid-feedback">Please enter a name.</div>
                                 </div>
 
-                                <div class="col-md-4 mb-3">
-                                    <label for="type" class="form-label">Role</label>
-                                    <select id="type" class="form-select" required>
-                                        <option  value="{{$service->service_type}}">{{$service->service_type}}</option>
-                                        @if($service->name == 'Delivery')
-                                            <option value="Dining">Dining</option>
-                                        @else
-                                            <option value="Delivery">Delivery</option>
-                                        @endif
-                                    </select>
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please select a type.</div>
-                                </div>
+                            
 
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label" for="name">Price</label>
-                                    <input type="number" class="form-control" id="price" name="price"
-                                       value="{{$service->price}}" required />
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a name.</div>
-                                </div>
                             </div>
 
                             <div class="row">
@@ -114,9 +95,7 @@
                             var ogImagefile = ogNewFile;
                             var formData = new FormData();
                             formData.append('name', $('#name').val());
-                            formData.append('service_type', $('#type').val());
                             formData.append('description', $('#description').val());
-                            formData.append('price', $('#price').val());
                             formData.append('image', ogImagefile);
                       
                             $.ajaxSetup({

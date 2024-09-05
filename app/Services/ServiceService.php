@@ -19,9 +19,13 @@ class ServiceService
 
   public function store(array $data)
   {
-      $media = $this->mediaService->storeImages($data['image']);
-      $service = $this->serviceRepositoryInterface->store($data);
-      $this->imageableService->store($media['id'], $service['id'], Service::class, 'Feature');
+      try{
+        $media = $this->mediaService->storeImages($data['image']);
+        $service = $this->serviceRepositoryInterface->store($data);
+        $this->imageableService->store($media['id'], $service['id'], Service::class, 'Feature');
+      }catch(Exception $e){
+        dd($e->getMessage());
+      }
   }
 
   public function findById(string $id)

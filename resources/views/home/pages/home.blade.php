@@ -248,6 +248,51 @@
 
     </section>
 
+      <!-- Section - Restaurant -->
+    <section class="section pb-0 protrude">
+        <div class="container">
+            <h1 class="mb-6">Our Restaurants</h1>
+        </div>
+    
+        <div class="restaurant-carousel carousel inner-controls" data-slick='{
+            "dots": true,
+            "slidesToShow": 3,
+            "slidesToScroll": 1,
+            "infinite": true,
+            "responsive": [
+                {
+                    "breakpoint": 991,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "slidesToScroll": 1
+                    }
+                },
+                {
+                    "breakpoint": 690,
+                    "settings": {
+                        "slidesToShow": 1,
+                        "slidesToScroll": 1
+                    }
+                }
+            ]
+        }'>
+          
+        @foreach($restaurants as $restaurant)
+            <div class="restaurant-sample px-2">
+                <a href="restaurant-details.html#Restaurant3">
+                    <img src="{{$restaurant->imageables->first()->media->getPath()['original']}}" alt="" class="image">
+                    <h3 class="title py-2 my-0">ABC- {{$restaurant->location}}</h3>
+                    <p class="location py-0 my-0">{{$restaurant->location}}</p>
+                    <p class="description py-0">{{$restaurant->description}}</p>
+                </a>
+            </div>
+        @endforeach
+            <!-- Add more restaurant samples as needed -->
+        </div>
+    </section>
+    
+
+
     <!-- Section -->
     <section class="section section-lg dark bg-dark">
 

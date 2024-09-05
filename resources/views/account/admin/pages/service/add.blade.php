@@ -10,48 +10,20 @@
                             <div class="col-md-10">
                                 <h5 class=" align-middle">Services Add</h5>
                             </div>
-                            <div class="col-md-2  d-md-flex justify-content-md-end">
-                                {{-- <button type="button" class="btn btn-outline-primary " disabled>
-                                    English
-                                </button> --}}
+                            <div class="col-md-2 d-md-flex justify-content-md-end">
+                                {{-- Button or other header elements here --}}
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <form class="formValidationExamples needs-validation" novalidate>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label" for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        required />
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label" for="service_name">Service Name</label>
+                                    <input type="text" class="form-control" id="name" name="service_name" required />
                                     <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a name.</div>
+                                    <div class="invalid-feedback">Please enter a service name.</div>
                                 </div>
-
-                              
-                                <div class="col-md-4 mb-3">
-                                    <label for="type" class="form-label">Role</label>
-                                    <select id="type" class="form-select" required>
-                                            <option value="Dining">Dining</option>
-                                            <option value="Delivery">Delivery</option>
-                                    </select>
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please select a type.</div>
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label" for="name">Price</label>
-                                    <input type="number" class="form-control" id="price" name="price"
-                                        required />
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">Please enter a name.</div>
-                                </div>
-                                
-
-                               
-                            </div>
-
-                            <div class="row">
 
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label" for="description">Description</label>
@@ -64,8 +36,6 @@
                                 <div class="col-md-12 mb-3">
                                     @include('account.layouts.includes.component.ogimageUploader')
                                 </div>
-
-                            
                             </div>
 
                             <div class="row">
@@ -74,51 +44,40 @@
                                         id="btnServiceSave"> <span class="spinner-border spinner-border-sm d-none"
                                             role="status" aria-hidden="true"></span>
                                         Submit</button>
-                                    </button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
-
         </div>
     @endsection
 
     @section('scripts')
         <!-- Page JS -->
-        {{-- <script src="{{url('admin_assets/js/form-validation-service-add.js')}}"></script> --}}
         <script src="{{ url('admin_assets/js/validation/imageUploaderValidation.js') }}"></script>
         <script>
-   
-          
             (function() {
-                // Apply Bootstrap validation styles to
                 const bsValidationForms = $('.needs-validation');
                 bsValidationForms.each(function() {
                     $(this).on('submit', function(event) {
-                        isValidate = validateImageUploader();
                         if (!this.checkValidity()) {
                             event.preventDefault();
                             event.stopPropagation();
                         } else {
                             event.preventDefault();
 
+                            // Show spinner
                             $(this).find('.spinner-border').removeClass('d-none');
-                            $(this).prop('disabled', true);
-                            disableFormFields($(this));
-                            $("#btnServiceSave").html('Submitting..');
-                            $("#btnServiceSave").prop('disabled', true);
+                            $("#btnServiceSave").html('Submitting..').prop('disabled', true);
 
                             var ogImagefile = ogNewFile;
                             var formData = new FormData();
                             formData.append('name', $('#name').val());
-                            formData.append('service_type', $('#type').val());
+                            formData.append('service_name', $('#name').val());
                             formData.append('description', $('#description').val());
-                            formData.append('price', $('#price').val());
                             formData.append('image', ogImagefile);
-                      
+
                             $.ajaxSetup({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -132,34 +91,17 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(response) {
-                                    showSuccessAlert("Service stored successfully", 'success',
-                                        '{{ route('service.list-view') }}');
-
+                                    showSuccessAlert("Service stored successfully", 'success', '{{ route('service.list-view') }}');
                                 },
                                 error: function(error) {
-                                    $("#btnServiceSave").html('Submitt');
-                                    $("#btnServiceSave").prop('disabled', false);
-                                    showErrorAlert("Somthing went wrong", 'warning',
-                                        '{{ route('service.view') }}');
-                                    enableFormFields($(this));
+                                    $("#btnServiceSave").html('Submit').prop('disabled', false);
+                                    showErrorAlert("Something went wrong", 'warning');
                                 }
                             });
                         }
-
                         $(this).addClass('was-validated');
                     });
                 });
             })();
-
-
-          
-    function disableFormFields(form) {
-        form.find('input, textarea, select, button').prop('disabled', true);
-  
-    }
-
-    function enableFormFields(form) {
-        form.find('input, textarea, select, button').prop('disabled', false);
-    }
         </script>
     @endsection
