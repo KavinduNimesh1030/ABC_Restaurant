@@ -15,10 +15,11 @@ class Restaurant extends Model
         'contact_info',
     ];
 
-    public function services()
+    public function restaurantServices()
     {
-        return $this->hasMany(RestaurantService::class,'service_id');
+        return $this->hasMany(RestaurantService::class,'restaurant_id');
     }
+
 
     public function reservations()
     {

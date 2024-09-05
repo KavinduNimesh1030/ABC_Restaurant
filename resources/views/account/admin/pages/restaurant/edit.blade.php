@@ -13,7 +13,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-10">
-                                <h5 class=" align-middle">restaurant Edit</h5>
+                                <h5 class=" align-middle">Restaurant Edit</h5>
                             </div>
                             <div class="col-md-2  d-md-flex justify-content-md-end">
                          
@@ -34,6 +34,7 @@
                           
 
                             <div class="col-md-6 mb-4">
+                             
                                 <label for="selectpickerSelectDeselect" class="form-label">Sevices and facilities</label>
                                 <select id="services" class="selectpicker selectclass w-100 border rounded"
                                     data-style="btn-default" multiple data-actions-box="true"
@@ -41,7 +42,8 @@
                                     @foreach($services as $service)
                                     @php
                                     $alradyAssign = false;
-                                    foreach ($restaurant->services as $restService) {
+                                    
+                                    foreach ($restaurant->restaurantServices as $restService) {
                                     if ($restService->service_id == $service->id) {
                                     $alradyAssign = true;
                                     }

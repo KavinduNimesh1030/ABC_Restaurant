@@ -51,6 +51,12 @@ class RestaurantController extends Controller
        return $this->restaurantService->findById($id);
     }
 
+    public function view(Request $id)
+    {
+        $restaurant = $this->findById($id->id);
+        return view('home.pages.services',['restaurant'=>$restaurant]);
+    }
+
     public function edit(Request $request, $id)
     {
         try {

@@ -7,7 +7,7 @@
                     <!-- Logo -->
                     <div class="module module-logo dark">
                         <a href="index.html">
-                            <img src="assets/img/logo-light.svg" alt="" width="88">
+                            <img src="{{url('assets/img/logo-light.svg')}}" alt="" width="88">
                         </a>
                     </div>
                 </div>

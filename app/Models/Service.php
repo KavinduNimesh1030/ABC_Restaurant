@@ -21,9 +21,9 @@ class Service extends Model
         return $this->hasMany(Reservation::class);
     }
 
-    public function restaurant()
+    public function restaurantServices()
     {
-        return $this->belongsTo(RestaurantService::class,'restaurant_id');
+        return $this->hasMany(RestaurantService::class,'service_id');
     }
 
     public function imageables()

@@ -279,7 +279,7 @@
           
         @foreach($restaurants as $restaurant)
             <div class="restaurant-sample px-2">
-                <a href="restaurant-details.html#Restaurant3">
+                <a href="{{ route('home.restaurant.view', ['id' => $restaurant->id]) }}">
                     <img src="{{$restaurant->imageables->first()->media->getPath()['original']}}" alt="" class="image">
                     <h3 class="title py-2 my-0">ABC- {{$restaurant->location}}</h3>
                     <p class="location py-0 my-0">{{$restaurant->location}}</p>

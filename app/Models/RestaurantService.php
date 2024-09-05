@@ -13,4 +13,17 @@ class RestaurantService extends Model
        'service_id',
         'restaurant_id'
     ];
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    
+ 
+
 }
