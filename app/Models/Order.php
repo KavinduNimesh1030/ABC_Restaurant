@@ -23,4 +23,9 @@ class Order extends Model
     {
         return $this->hasMany(Payment::class, 'resourceable_id')->where('resourceable_type', Order::class);
     }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class,'order_id');
+    }
 }

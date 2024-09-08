@@ -30,4 +30,10 @@ class OrderController extends Controller
             return redirect()->back($e->getMessage());
        }
     }
+
+    public function getOrderItems(Request $id)
+    {
+        $orderItems = $this->orderService->getOrderItems($id->id);
+        return view('account.admin.pages.order.item-list',['orderItems'=>$orderItems]);
+    }
 }

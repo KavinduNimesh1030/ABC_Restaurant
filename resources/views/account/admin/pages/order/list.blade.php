@@ -59,6 +59,10 @@
                                    
                                     <a type="button mb-2" href="#" onclick="changePublishStatus({{ $order->id }}, 'Canceled')"
                                       class="btn btn-outline-warning btn-sm mb-2">Cancel</a>
+
+                                      <a type="button" href={{ route('order.get-item', ['id' => $order->id]) }}
+                                        class="btn
+                                        btn-outline-primary btn-sm mb-2">View</a>
                                     
                             </td>
                         </tr>

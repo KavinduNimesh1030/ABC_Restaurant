@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Service;
 use App\Repositories\interfaces\OrderRepositoryInterface;
 use App\Repositories\interfaces\PaymentRepositoryInterface;
@@ -31,10 +32,19 @@ class OrderService
       $this->orderRepositoryInterface->storeOrderDetails($data);
       $amount = $this->calculateCartTotal();
       $this->paymentRepositoryInterface->store(['resourceble_id'=>$order->id,'resourceble_type'=>Order::class,'user_id'=>Auth::user()->id,'amount'=>$amount,'payment_date'=>Date::now(),'payment_method'=>$paymentType]);
+      $this->storeOrderItems($order->id);
       session()->forget('cart');
      }catch(Exception $e){
       dd($e->getMessage());
      }
+  }
+
+  private function storeOrderItems(string $orderId)
+  {
+    $cartItems = session()->get('cart', []);
+    foreach($cartItems as $cart){
+      OrderItem::create(['order_id'=>$orderId,'product_id'=>$cart['product']->id,'qty'=>$cart['quantity']]);
+    }
   }
 
   private function calculateCartTotal()
@@ -71,5 +81,11 @@ class OrderService
   // {
   //   $this->orderRepositoryInterface->delete($id);
   // }
+
+  public function getOrderItems(string $orderId)
+  {
+    return OrderItem::where('order_id',$orderId)->get();
+  }
+
 
 }

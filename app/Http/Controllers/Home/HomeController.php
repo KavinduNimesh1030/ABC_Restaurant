@@ -21,6 +21,7 @@ class HomeController extends Controller
 
     public function index()
     { 
+       
         return view('home.pages.home',['categories'=>Category::all(),'restaurants'=>Restaurant::all()]);
     }
 

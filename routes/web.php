@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => '/order'], function () {
             Route::get('/list-view', [OrderController::class, 'getReservation'])->name('order.list-view');
             Route::post('/change-status/{id}', [OrderController::class, 'changeStatus'])->name('order.change-status');
+            Route::get('/get-order-item/{id}', [OrderController::class, 'getOrderItems'])->name('order.get-item');
         });
     });
 
