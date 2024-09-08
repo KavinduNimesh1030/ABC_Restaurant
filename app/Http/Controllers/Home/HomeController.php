@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Restaurant;
+use App\Services\OfferService;
 use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Services\ReservationService;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function __construct(private ProductService $productService, private OrderService $orderService, private ReservationService $reservationService)
+    public function __construct(private ProductService $productService, private OrderService $orderService, private ReservationService $reservationService,private OfferService $offerService)
     {
     }
 
@@ -129,5 +130,11 @@ class HomeController extends Controller
         DB::rollBack();
         return redirect()->back($e->getMessage());
       }
+    }
+
+    public function showOffers()
+    {
+        $offers = $this->offerService->getAll();
+        return view('home.pages.offer',['offers'=>$offers]);
     }
 }

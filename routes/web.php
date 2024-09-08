@@ -108,6 +108,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/checkout', [HomeController::class, 'checkout'])->name('home.checkout');
         Route::get('/reservation-views', [HomeController::class, 'loadReservationPage'])->name('home.reservation.view');
         Route::get('/restaurant-view/{id}', [RestaurantController::class, 'view'])->name('home.restaurant.view');
+        Route::get('/offer-view', [HomeController::class, 'showOffers'])->name('home.offer.view');
 
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
