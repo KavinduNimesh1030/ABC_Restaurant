@@ -4,45 +4,49 @@
 @section('content')
 <div class="container">
     <div class="card">
-        {{-- <h5 class="card-header pb-0">orders List</h5> --}}
+        {{-- <h5 class="card-header pb-0">payments List</h5> --}}
         <div class="card-header  row">
             <div class="col-md-10">
-                <h5 class=" align-middle">Order Items </h5>
+                <h5 class=" align-middle">Payment</h5>
             </div>
             <div class="col-md-2  d-md-flex justify-content-md-end">
+                {{-- <a type="button" class="btn btn-outline-primary ladda-button" data-style="expand-right">
+                    <span class="ladda-label">Add payment</span>
+                </a> --}}
+
+                {{-- <a type="button" href="{{route('payment.view')}}" class="btn btn-outline-primary">
+                    <span class="ladda-label">Add payment</span>
+                </a> --}}
             </div>
         </div>
       
         <hr class="p-0 mx-4 my-0 mb-2 mb-4">
         <div class="mx-4 mb-4">
-            <div id="orderTable" class="p-2">
+            <div id="paymentTable" class="p-2">
                 <table class="table table-striped" style="width:100%;" id="table">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Order Id</th>
-                            <th>Product Name</th>
-                            <th>Qty</th>
-                        
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Method</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($orderItems as $orderItem)
-                     
+                        @foreach($payments as $payment)
                         <tr>
                             <td>
-                                {{$orderItem->id}}
+                                {{$payment->id}}
                             </td>
                             <td>
-                                {{$orderItem->order->id}}
+                                {{$payment->amount}}
                             </td>
                             <td>
-                                {{$orderItem->product->name}}
+                                {{$payment->payment_date}}
                             </td>
                             <td>
-                                {{$orderItem->qty}}
+                                {{ $payment->payment_method }}
                             </td>
-                          
                         </tr>
                         @endforeach
                     </tbody>
@@ -53,4 +57,10 @@
 </div>
 
 @endsection
+
+@section('scripts')
+<script>
+</script>
+@endsection
+
 

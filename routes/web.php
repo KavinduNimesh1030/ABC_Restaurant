@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Offer\OfferController;
 use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Reservation\ReservationController;
@@ -98,6 +99,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/list-view', [OrderController::class, 'getReservation'])->name('order.list-view');
             Route::post('/change-status/{id}', [OrderController::class, 'changeStatus'])->name('order.change-status');
             Route::get('/get-order-item/{id}', [OrderController::class, 'getOrderItems'])->name('order.get-item');
+        });
+
+        Route::group(['prefix' => '/payment'], function () {
+            Route::get('/list-view', [PaymentController::class, 'getAll'])->name('payment.list-view');
+           
         });
     });
 
