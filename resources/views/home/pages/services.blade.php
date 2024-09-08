@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-4">
                     <h1 class="mb-0">ABC Restaurant {{$restaurant->location}}</h1>
-                    <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    <h4 class="text-muted mb-0">The Best Services & Facilities</h4>
                 </div>
             </div>
         </div>

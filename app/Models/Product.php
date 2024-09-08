@@ -22,5 +22,10 @@ class Product extends Model
         return $this->hasMany(Imageable::class, 'resourceable_id')->where('resourceable_type', Product::class);
     }
 
+    public function offer()
+    {
+        return $this->hasOne(Offer::class,'product_id');
+    }
+
 
 }

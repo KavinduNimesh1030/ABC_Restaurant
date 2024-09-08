@@ -10,14 +10,15 @@ class Offer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'restaurant_id',
+        'name',
         'offer_description',
-        'start_date',
+        'product_id',
         'end_date',
     ];
 
-    public function restaurant()
+    public function product()
     {
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(Product::class);
     }
+
 }

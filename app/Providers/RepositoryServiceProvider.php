@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\interfaces\OfferRepositoryInterface;
 use App\Repositories\interfaces\OrderRepositoryInterface;
 use App\Repositories\interfaces\PaymentRepositoryInterface;
 use App\Repositories\interfaces\PostRepositoryInterface;
@@ -10,6 +11,7 @@ use App\Repositories\interfaces\ReservationRepositoryInterface;
 use App\Repositories\interfaces\RestaurantRepositoryInterface;
 use App\Repositories\interfaces\ServiceRepositoryInterface;
 use App\Repositories\interfaces\StaffRepositoryInterface;
+use App\Repositories\OfferRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\PaymentRepository;
 use App\Repositories\PostRepository;
@@ -35,6 +37,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
         $this->app->bind(ReservationRepositoryInterface::class, ReservationRepository::class);
+        $this->app->bind(OfferRepositoryInterface::class, OfferRepository::class);
 
     }
 

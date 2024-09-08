@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Offer\OfferController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -67,6 +68,16 @@ Route::middleware('auth')->group(function () {
             Route::post('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
             Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
         });
+
+        Route::group(['prefix' => '/offer'], function () {
+            Route::get('/add-view', [OfferController::class, 'index'])->name('offer.view');
+            Route::post('/store', [OfferController::class, 'store'])->name('offer.store');
+            Route::get('/list-view', [OfferController::class, 'getAll'])->name('offer.list-view');
+            Route::get('/edit-view/{id}', [OfferController::class, 'getEditPage'])->name('offer.edit-view');
+            Route::post('/edit/{id}', [OfferController::class, 'edit'])->name('offer.edit');
+            Route::delete('/delete/{id}', [OfferController::class, 'delete'])->name('offer.delete');
+        });
+
 
         
         Route::group(['prefix' => '/restaurant'], function () {

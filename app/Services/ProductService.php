@@ -44,6 +44,7 @@ class ProductService
 
   public function delete(string $id)
   {
+    
     $this->productRepositoryInterface->delete($id);
   }
 
