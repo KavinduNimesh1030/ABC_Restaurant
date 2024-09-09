@@ -6,8 +6,9 @@
                 <div class="col-md-3">
                     <!-- Logo -->
                     <div class="module module-logo dark">
-                        <a href="index.html">
-                            <img src="{{url('assets/img/logo-light.svg')}}" alt="" width="88">
+                        <a href="{{route('home')}}">
+                            <img class="m-0 p-0" src="{{url('assets/img/logo-light.svg')}}" alt="" width="88">
+                            <h5 class="m-0 p-0" style="color: #E9B776; transform: translateY(-15px);">ABC RESTAURANT</h5>
                         </a>
                     </div>
                 </div>

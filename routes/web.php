@@ -20,13 +20,13 @@ Route::get('/menu', [HomeController::class, 'getMenu'])->name('home.menu');
 Route::post('/reservation-store', [HomeController::class, 'storeReservation'])->name('home.reservation.store');
 
 
-Route::get('/abc', function () {
-    return view('home.pages.sign-in');
-})->name('abc');
+// Route::get('/abc', function () {
+//     return view('home.pages.sign-in');
+// })->name('abc');
 
-Route::get('/ab', function () {
-    return view('home.pages.sign-up');
-})->name('ab');
+// Route::get('/ab', function () {
+//     return view('home.pages.sign-up');
+// })->name('ab');
 
 
 Route::get('/dashboard', function () {

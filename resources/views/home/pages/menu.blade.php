@@ -44,8 +44,9 @@
                         </div>
                         <div class="menu-category-content padded">
                             <div class="row gutters-sm">
-                                <div class="col-lg-4 col-6">
+                                
                                     @foreach($category->products as $product)
+                                    <div class="col-lg-4 col-6">
                                     <!-- Menu Item -->
                                     <div class="menu-item menu-grid-item">
                                         <img class="mb-4" src="{{$product->imageables->first()->media->getPath()['original']}}" alt="">
@@ -64,8 +65,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
                                 </div>
+                                    @endforeach
+                            
                             
                             </div>
                         </div>

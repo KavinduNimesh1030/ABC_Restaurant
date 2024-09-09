@@ -1,6 +1,4 @@
 @extends('account.layouts.default')
-
-
 @section('content')
 <div class="container">
     <div class="card">

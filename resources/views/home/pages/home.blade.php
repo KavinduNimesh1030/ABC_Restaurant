@@ -155,42 +155,42 @@
         }'>
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Burgers">
+                <a href="{{route('home.menu')}}">
                     <img src="assets/soup/img/photos/menu-sample-burgers.jpg" alt="" class="image">
                     <h3 class="title">Burgers</h3>
                 </a>
             </div>
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Pizza">
+                <a href="{{route('home.menu')}}">
                     <img src="assets/soup/img/photos/menu-sample-pizza.jpg" alt="" class="image">
                     <h3 class="title">Pizza</h3>
                 </a>
             </div>
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Sushi">
+                <a href="{{route('home.menu')}}">
                     <img src="assets/soup/img/photos/menu-sample-sushi.jpg" alt="" class="image">
                     <h3 class="title">Sushi</h3>
                 </a>
             </div>
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Pasta">
+                <a href="{{route('home.menu')}}">
                     <img src="assets/soup/img/photos/menu-sample-pasta.jpg" alt="" class="image">
                     <h3 class="title">Pasta</h3>
                 </a>
             </div>
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Desserts">
+                <a href="{{route('home.menu')}}">
                     <img src="assets/soup/img/photos/menu-sample-dessert.jpg" alt="" class="image">
                     <h3 class="title">Desserts</h3>
                 </a>
             </div>
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Drinks">
+                <a href="{{route('home.menu')}}">
                     <img src="assets/soup/img/photos/menu-sample-drinks.jpg" alt="" class="image">
                     <h3 class="title">Drinks</h3>
                 </a>
@@ -206,19 +206,21 @@
             <h1 class="text-center mb-6">Special offers</h1>
             <div class="carousel" data-slick='{"dots": true}'>
                 <!-- Special Offer -->
+                @foreach($offers as $offer)
                 <div class="special-offer">
-                    <img src="assets/soup/img/photos/special-burger.jpg" alt="" class="special-offer-image">
+                    <img src="{{url($offer->product->imageables->first()->media->getPath()['original'])}}" alt="" class="special-offer-image">
                     <div class="special-offer-content">
-                        <h2 class="mb-2">Free Burger</h2>
-                        <h5 class="text-muted mb-5">Get free burger from orders higher that $40!</h5>
+                        <h2 class="mb-2">{{$offer->name}}</h2>
+                        <h5 class="text-muted mb-5">Untill {{$offer->end_date}}</h5>
                         <ul class="list-check text-lg mb-0">
-                            <li>Only on Tuesdays</li>
-                            <li class="false">Order higher that $40</li>
-                            <li>Unless one burger ordered</li>
+                            <li><p>{{$offer->offer_description}}</p></li>
+                            {{-- <li class="false">Order higher that $40</li>
+                            <li>Unless one burger ordered</li> --}}
                         </ul>
                     </div>
                 </div>
-                <!-- Special Offer -->
+                @endforeach
+                {{-- <!-- Special Offer -->
                 <div class="special-offer">
                     <img src="assets/soup/img/photos/special-pizza.jpg" alt="" class="special-offer-image">
                     <div class="special-offer-content">
@@ -242,7 +244,7 @@
                             <li>Online order</li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 

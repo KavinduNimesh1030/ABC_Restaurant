@@ -4,25 +4,26 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Offer;
 use App\Models\Restaurant;
 use App\Services\OfferService;
 use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Services\ReservationService;
+use App\Services\ServiceService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function __construct(private ProductService $productService, private OrderService $orderService, private ReservationService $reservationService,private OfferService $offerService)
+    public function __construct(private ProductService $productService, private OrderService $orderService, private ReservationService $reservationService,private OfferService $offerService, private ServiceService $serviceService)
     {
     }
 
     public function index()
     { 
-       
-        return view('home.pages.home',['categories'=>Category::all(),'restaurants'=>Restaurant::all()]);
+        return view('home.pages.home',['categories'=>Category::all(),'restaurants'=>Restaurant::all(),'offers'=>Offer::all()]);
     }
 
     public function getMenu()

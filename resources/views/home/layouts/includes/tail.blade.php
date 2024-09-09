@@ -84,8 +84,9 @@
             <tr>
                 <td class="title">
                     <span class="name"><a href="#product-modal" data-toggle="modal">${product.name}</a></span>
-                    <span class="caption text-muted">${product.description}</span>
+                   
                 </td>
+                   <td class="price"> x ${(item.quantity)}</td>
                 <td class="price">Rs.${(product.price * item.quantity).toFixed(2)}</td>
                 <td class="actions">
                     <a href="#product-modal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>

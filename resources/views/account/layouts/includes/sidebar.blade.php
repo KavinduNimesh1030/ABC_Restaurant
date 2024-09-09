@@ -3,8 +3,11 @@
     <div class="app-brand demo pt-4">
         <a href="{{route('dashboard')}}" class="app-brand-link">
        
-                <div class="">
-                    <img src="{{url('admin_assets/img/logos/usefulfy.png')}}" class="w-65 h-auto"  style="width: 150px !important;"/>
+                <div class=" row m-0 p-0">
+                    <div class="col-md-4"><img class="m-0 p-0" src="{{url('assets/img/logo-light-admin.svg')}}" alt="" width="55"></div>
+                    <div class="col-md-6"><h5 style="align-items: center; color:#0D652D;">ABC Restaurant</h5></div>
+                    
+                    {{-- <img src="{{url('admin_assets/img/logos/usefulfy.png')}}" class="w-65 h-auto"  style="width: 150px !important;"/> --}}
                 </div>
         </a>
 
@@ -16,7 +19,7 @@
 
     <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-4">
+    <ul class="menu-inner py-2">
  
         <li class="menu-item {{ request()->is('admin') ? 'active' : '' }}">
             <a href="{{ route('admin-dashboard') }}" class="menu-link">
