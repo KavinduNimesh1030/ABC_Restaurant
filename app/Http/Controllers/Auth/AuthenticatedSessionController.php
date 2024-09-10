@@ -16,7 +16,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('home.pages.sign-in');
     }
 
     /**
@@ -27,8 +27,27 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $request->session()->regenerate();
+        $roles = Auth::user()->getRoleNames();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+       
+
+        $route = '';
+        if ($roles->contains('admin')) {
+            $route = '/account/admin/dashboard';
+        } elseif ($roles->contains('customer')) {
+            $route = '/';
+        } elseif ($roles->contains('staff')) {
+            $route = '/account/staff/dashboard';
+        } else {
+            $route = '/';
+        }
+
+
+        return redirect()->intended($route);
+    
+
+        // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
